@@ -1,0 +1,27 @@
+{
+  "name": "abstract-skiff-transport",
+  "version": "0.0.1",
+  "description": "Abstract Transport Layer for Skiff",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "node test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pgte/abstract-skiff-transport.git"
+  },
+  "keywords": [
+    "skiff",
+    "transport",
+    "abstract"
+  ],
+  "author": "pgte",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pgte/abstract-skiff-transport/issues"
+  },
+  "homepage": "https://github.com/pgte/abstract-skiff-transport",
+  "dependencies": {
+    "tape": "^3.0.0"
+  }
+}
