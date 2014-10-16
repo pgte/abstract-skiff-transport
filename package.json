@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/pgte/abstract-skiff-transport",
   "dependencies": {
+    "colors": "^1.0.3",
     "tape": "^3.0.0"
   },
   "devDependencies": {
