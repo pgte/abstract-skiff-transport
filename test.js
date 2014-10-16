@@ -1,7 +1,7 @@
 'use strict';
 
 var test = require('tape');
-var AST = require('./')
+var AST = require('./');
 
 test('transport connect is extendable', function(t) {
   var tr = new AST.Transport();
@@ -10,7 +10,7 @@ test('transport connect is extendable', function(t) {
   tr._connect = function(options) {
     t.equal(options, originalOptions);
     return 'connect object';
-  }
+  };
 
   var c = tr.connect(originalOptions);
   t.equal(c, 'connect object');
@@ -25,7 +25,7 @@ test('transport listen is extendable', function(t) {
     t.equal(options, originalOptions);
     t.equal(_callback, callback);
     t.end();
-  }
+  };
 
   tr.listen(originalOptions, callback);
 

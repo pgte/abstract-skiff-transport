@@ -30,5 +30,10 @@
     "jscs": "^1.7.1",
     "jshint": "^2.5.6",
     "pre-commit": "0.0.9"
-  }
+  },
+  "pre-commit": [
+    "codestyle",
+    "jshint",
+    "test"
+  ]
 }
