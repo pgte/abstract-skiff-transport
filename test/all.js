@@ -8,6 +8,7 @@ var tests = [
   'start_server',
   'connect',
   'send',
+  'receive',
   'close_connection',
   'stop_server'
 ].map(function(m) {

@@ -2,9 +2,9 @@
 
 var test = require('tape');
 
-module.exports = connectTest;
+module.exports = sendTest;
 
-function connectTest(transport, options) {
+function sendTest(transport, options) {
   test('can send', function(t) {
     var type = 'type';
     var args = {a: 1, b: 2};
