@@ -4,7 +4,9 @@
   "description": "Abstract Transport Layer for Skiff",
   "main": "lib/index.js",
   "scripts": {
-    "test": "node test"
+    "test": "node test",
+    "jshint": "jshint -c .jshintrc --exclude-path .gitignore .",
+    "codestyle": "jscs -p google lib/"
   },
   "repository": {
     "type": "git",
@@ -23,5 +25,10 @@
   "homepage": "https://github.com/pgte/abstract-skiff-transport",
   "dependencies": {
     "tape": "^3.0.0"
+  },
+  "devDependencies": {
+    "jscs": "^1.7.1",
+    "jshint": "^2.5.6",
+    "pre-commit": "0.0.9"
   }
 }
