@@ -10,7 +10,8 @@ var tests = [
   'send',
   'receive',
   'close_connection',
-  'stop_server'
+  'stop_server',
+  'listen'
 ].map(function(m) {
   return require('./' + m);
 });

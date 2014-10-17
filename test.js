@@ -7,12 +7,13 @@ test('transport connect is extendable', function(t) {
   var tr = new AST.Transport();
   var originalOptions = {a:1, b:2};
 
-  tr._connect = function(options) {
+  tr._connect = function(id, options) {
+    t.equal(id, 'id');
     t.equal(options, originalOptions);
     return 'connect object';
   };
 
-  var c = tr.connect(originalOptions);
+  var c = tr.connect('id', originalOptions);
   t.equal(c, 'connect object');
   t.end();
 });
@@ -21,13 +22,14 @@ test('transport listen is extendable', function(t) {
   var tr = new AST.Transport();
   var originalOptions = {a:1, b:2};
 
-  tr._listen = function(options, _callback) {
+  tr._listen = function(localNodeId, options, _callback) {
+    t.equal(localNodeId, 'local node id');
     t.equal(options, originalOptions);
     t.equal(_callback, callback);
     t.end();
   };
 
-  tr.listen(originalOptions, callback);
+  tr.listen('local node id', originalOptions, callback);
 
   function callback() {}
 });
