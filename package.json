@@ -1,6 +1,6 @@
 {
   "name": "abstract-skiff-transport",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "Abstract Transport Layer for Skiff",
   "main": "lib/index.js",
   "scripts": {
