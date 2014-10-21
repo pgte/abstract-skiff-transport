@@ -5,31 +5,64 @@ var AST = require('./');
 
 test('transport connect is extendable', function(t) {
   var tr = new AST.Transport();
-  var originalOptions = {a:1, b:2};
 
+  tr._protocolName = function() {
+    return 'thisistheprotocolname';
+  };
   tr._connect = function(id, options) {
     t.equal(id, 'id');
-    t.equal(options, originalOptions);
+    t.deepEqual(
+      options,
+      {
+        auth: null,
+        hash: null,
+        href: 'thisistheprotocolname://somehostname:8080',
+        path: null,
+        pathname: null,
+        query: null,
+        search: null,
+        slashes: true,
+        host: 'somehostname:8080',
+        protocol: 'thisistheprotocolname',
+        hostname: 'somehostname',
+        port: 8080
+      });
     return 'connect object';
   };
 
-  var c = tr.connect('id', originalOptions);
+  var c = tr.connect('id', 'thisistheprotocolname://somehostname:8080');
   t.equal(c, 'connect object');
   t.end();
 });
 
 test('transport listen is extendable', function(t) {
   var tr = new AST.Transport();
-  var originalOptions = {a:1, b:2};
 
+  tr._protocolName = function() {
+    return 'thisistheprotocolname';
+  };
   tr._listen = function(localNodeId, options, _callback) {
     t.equal(localNodeId, 'local node id');
-    t.equal(options, originalOptions);
+    t.deepEqual(options, {
+      auth: null,
+      hash: null,
+      href: 'thisistheprotocolname://somehostname:8081',
+      path: null,
+      pathname: null,
+      query: null,
+      search: null,
+      slashes: true,
+      host: 'somehostname:8081',
+      protocol: 'thisistheprotocolname',
+      hostname: 'somehostname',
+      port: 8081
+    });
     t.equal(_callback, callback);
     t.end();
   };
 
-  tr.listen('local node id', originalOptions, callback);
+  tr.listen(
+    'local node id', 'thisistheprotocolname://somehostname:8081', callback);
 
   function callback() {}
 });
