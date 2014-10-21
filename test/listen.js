@@ -20,14 +20,15 @@ function listenTest(transport, options) {
     if (! options.connectURL) {
       throw new Error('need options.connectURL');
     }
-    transport.listen('local node id', options.connectURL, onConnection);
+    var server = transport.listen(
+      'local node id', options.connectURL, onConnection);
 
     function onConnection(peerId, connection) {
       t.equal(peerId, options.listenPeerId);
       t.equal(typeof connection, 'object');
       connection.close(function() {
         options.disconnect(client);
-        transport._server.close(); // HACK, put this in the abstract api
+        server.close();
         t.end();
       });
     }
