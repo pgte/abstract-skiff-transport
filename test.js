@@ -58,11 +58,15 @@ test('transport listen is extendable', function(t) {
       port: 8081
     });
     t.equal(_callback, callback);
-    t.end();
+
+    return 'SERVER';
   };
 
-  tr.listen(
+  var server = tr.listen(
     'local node id', 'thisistheprotocolname://somehostname:8081', callback);
+
+  t.equal(server, 'SERVER');
+  t.end();
 
   function callback() {}
 });
