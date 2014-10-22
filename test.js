@@ -41,7 +41,7 @@ test('transport listen is extendable', function(t) {
   tr._protocolName = function() {
     return 'thisistheprotocolname';
   };
-  tr._listen = function(localNodeId, options, _callback) {
+  tr._listen = function(localNodeId, options, _listener, _callback) {
     t.equal(localNodeId, 'local node id');
     t.deepEqual(options, {
       auth: null,
@@ -57,17 +57,20 @@ test('transport listen is extendable', function(t) {
       hostname: 'somehostname',
       port: 8081
     });
+    t.equal(_listener, listener);
     t.equal(_callback, callback);
 
     return 'SERVER';
   };
 
   var server = tr.listen(
-    'local node id', 'thisistheprotocolname://somehostname:8081', callback);
+    'local node id', 'thisistheprotocolname://somehostname:8081',
+    listener, callback);
 
   t.equal(server, 'SERVER');
   t.end();
 
+  function listener() {}
   function callback() {}
 });
 
