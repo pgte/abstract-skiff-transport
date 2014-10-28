@@ -9,8 +9,9 @@ test('transport connect is extendable', function(t) {
   tr._protocolName = function() {
     return 'thisistheprotocolname';
   };
-  tr._connect = function(id, options) {
+  tr._connect = function(id, localMeta, options, meta) {
     t.equal(id, 'id');
+    t.equal(localMeta, 'local meta');
     t.deepEqual(
       options,
       {
@@ -27,10 +28,12 @@ test('transport connect is extendable', function(t) {
         hostname: 'somehostname',
         port: 8080
       });
+    t.equal(meta, 'meta');
     return 'connect object';
   };
 
-  var c = tr.connect('id', 'thisistheprotocolname://somehostname:8080');
+  var c = tr.connect(
+    'id', 'local meta', 'thisistheprotocolname://somehostname:8080', 'meta');
   t.equal(c, 'connect object');
   t.end();
 });

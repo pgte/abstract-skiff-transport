@@ -9,7 +9,8 @@ function connectTest(transport, options) {
     if (! options.connectURL) {
       throw new Error('need options.connectURL');
     }
-    var connection = transport.connect('local node id', options.connectURL);
+    var connection = transport.connect(
+      'local node id', 'local node meta', options.connectURL, 'meta');
     t.equal(typeof connection, 'object');
     options._connection = connection;
     t.end();

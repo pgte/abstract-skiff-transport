@@ -21,9 +21,9 @@ function listenTest(transport, options) {
       throw new Error('need options.connectURL');
     }
     var server = transport.listen(
-      'local node id', options.connectURL, onConnection);
+      'local node id', options.connectURL, onConnection, onceListening);
 
-    function onConnection(peerId, connection) {
+    function onConnection(peerId, peerMeta, connection) {
       t.equal(peerId, options.listenPeerId);
       t.equal(typeof connection, 'object');
       connection.close(function() {
@@ -33,9 +33,12 @@ function listenTest(transport, options) {
       });
     }
 
-    setTimeout(function() {
+    function onceListening(err) {
+      if (err) {
+        throw err;
+      }
       client = options.connect();
-    }, 1e2);
+    }
 
   });
 }
